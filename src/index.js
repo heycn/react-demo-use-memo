@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const App = () => {
@@ -10,10 +10,8 @@ const App = () => {
     setN(n => n + 1)
   }
 
-  const onClickChild = useMemo(() => {
-    return () => {
-      console.log('我不会执行的')
-    }
+  const onClickChild = useCallback(() => {
+    console.log('我不会执行的')
   }, [m])
 
   return (
