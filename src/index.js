@@ -9,12 +9,14 @@ const App = () => {
     setN(n => n + 1)
   }
 
+  const onClickChild = () => {}
+
   return (
     <div>
       <div>
         <button onClick={onClick}>update n {n}</button>
       </div>
-      <Child data={m} />
+      <Child data={m} onClick={onClickChild} />
     </div>
   )
 }
@@ -23,7 +25,7 @@ const App = () => {
 const Child = memo(props => {
   console.log('执行了')
   console.log('如果这里有大量代码')
-  return <div>Child: {props.data}</div>
+  return <div onClick={props.onClick}>Child: {props.data}</div>
 })
 
 const root = document.getElementById('root')
