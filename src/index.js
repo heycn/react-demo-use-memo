@@ -1,7 +1,8 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const App = () => {
+  console.log('App 执行了')
   const [n, setN] = useState(0)
   const [m, setM] = useState(0)
 
@@ -9,7 +10,11 @@ const App = () => {
     setN(n => n + 1)
   }
 
-  const onClickChild = () => {}
+  const onClickChild = useMemo(() => {
+    return () => {
+      console.log('我不会执行的')
+    }
+  }, [m])
 
   return (
     <div>
@@ -21,7 +26,6 @@ const App = () => {
   )
 }
 
-// 使用 memo 能解决不必要的 render
 const Child = memo(props => {
   console.log('执行了')
   console.log('如果这里有大量代码')
